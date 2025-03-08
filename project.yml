@@ -1,0 +1,68 @@
+drn:
+  network:
+    subnet1:
+      #vpc_name: "tf-9293-drn-vpc11"
+      subnet_name: "tf-9293-drn-subnet11"
+      gcp_region: "asia-south1"
+      ip_cidr_range: "11.0.0.0/24"
+    
+    subnet2:
+      #vpc_name: "tf-9293-sandbox-vpc22"
+      subnet_name: "tf-9293-sandbox-subnet22"
+      gcp_region: "asia-south2"
+      ip_cidr_range: "22.0.0.0/24"
+  
+  firewall_rules:
+    allow-http:
+      direction: "INGRESS"
+      priority: 1001
+      source_ranges: ["0.0.0.0/0"]
+      allowed:
+        - protocol: "tcp"
+          ports: ["80", "443"]
+
+    allow-ssh:
+      direction: "INGRESS"
+      priority: 1001
+      source_ranges: ["0.0.0.0/0"]
+      allowed:
+        - protocol: "tcp"
+          ports: ["22"]
+      
+  gce:
+    instances1:
+      #instance_name: "gcp-instance1"
+      machine_type: "e2-micro"
+      subnetwork: "tf-9293-drn-subnet11"
+      zone: "asia-south1-a"
+      image: "debian-cloud/debian-12"
+      disk_size: 10
+      firewall_tags : ["allow-http", "allow-ssh"]
+  
+  buckets:
+  tf-9293-sandbox-bucket:
+    location: "asia-south1"
+    storage_class: "STANDARD"
+
+dmz:
+  network:
+    tf-9293-dmz-subnet1:
+      #vpc_name: "tf-9293-dmz-vpc11"
+      subnet_name: "tf-9293-dmz-subnet11"
+      gcp_region: "asia-south1"
+      ip_cidr_range: "30.0.0.0/24"
+  
+  gce:
+    instances1:
+      instances1:
+      #instance_name: "gcp-instance1"
+      machine_type: "e2-micro"
+      subnetwork: "tf-9293-drn-subnet11"
+      zone: "asia-south1-a"
+      image: "debian-cloud/debian-12"
+      disk_size: 20
+      firewall_tags : ["allow-http", "allow-ssh"]
+    
+    #tf-9293-sandbox-subnet2:
+      #vpc_name: "tf-9293-sandbox-vpc22"
+      #subnet_name: "tf-9293-sandbox-subnet22"
