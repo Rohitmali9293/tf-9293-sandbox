@@ -1,4 +1,4 @@
 [submodule "templates"]
-    path = templates
-    url = https://github.com/Rohitmali9293/tf-template.git
+	path = templates
+	url = https://github.com/Rohitmali9293/tf-template.git
     
