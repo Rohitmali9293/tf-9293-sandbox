@@ -14,8 +14,6 @@ crash.log
 .terraform/
 
 # Ignore generated `.tfvars` files (often contain sensitive data)
-*.tfvars
-*.tfvars.json
 
 # Ignore plan output files
 *.tfplan
