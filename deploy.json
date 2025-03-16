@@ -1,4 +1,4 @@
 {
     "workspace": "drn",
-    "module": "network"
+    "module": "gce"
 }
