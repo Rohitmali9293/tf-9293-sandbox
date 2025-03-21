@@ -44,6 +44,15 @@ drn:
     location: "asia-south1"
     storage_class: "STANDARD"
 
+  mig:
+    api1:
+      machine_type: "e2-micro"
+      subnetwork: "tf-9293-drn-subnet11"
+      network: "drn-network"
+      disk_size: 10
+      image: "debian-cloud/debian-12"
+      zones: ["asia-south1-a", "asia-south1-b", "asia-south1-c"]
+
 dmz:
   network:
     tf-9293-dmz-subnet1:
